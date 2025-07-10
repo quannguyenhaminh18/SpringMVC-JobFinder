@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Trang Quản Trị</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <style>
+        :root {
+            --main-purple: #6f42c1;
+            --light-purple: #9b59b6;
+            --dark-purple: #5e35b1;
+        }
+
+        body {
+            background-color: #f8f9fa;
+        }
+
+        .navbar {
+            background: linear-gradient(45deg, var(--main-purple), var(--light-purple));
+        }
+
+        .card {
+            transition: transform 0.3s ease-in-out, box-shadow 0.3s ease-in-out;
+            border: none;
+        }
+
+        .card:hover {
+            transform: scale(1.05);
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.15);
+        }
+
+        .text-primary {
+            color: var(--main-purple) !important;
+        }
+
+        .text-purple {
+            color: var(--light-purple);
+        }
+
+        .text-muted-purple {
+            color: #a087c6;
+        }
+
+        .btn-outline-primary:hover {
+            background-color: var(--main-purple);
+            color: #fff;
+        }
+
+        .btn-outline-warning:hover {
+            background-color: #d6a500;
+            color: #fff;
+        }
+    </style>
+</head>
+<body>
+<nav class="navbar navbar-expand-lg navbar-light">
+    <div class="container-fluid">
+        <div class="navbar-nav ms-auto">
+            <a class="nav-link" th:href="@{/auth/logout}">Đăng xuất</a>
+        </div>
+    </div>
+</nav>
+
+<div class="container mt-5">
+    <h1 class="text-center mb-5 text-primary">Thống Kê Hệ Thống</h1>
+    <div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 g-4">
+        <div class="col">
+            <div class="card shadow-sm">
+                <div class="card-body text-center">
+                    <h5 class="card-title">Người dùng</h5>
+                    <p class="fs-3 fw-bold text-primary" th:text="${userCount}"></p>
+                    <a th:href="@{/users/list(role=)}" class="btn btn-outline-primary mt-2">Xem danh sách</a>
+                </div>
+            </div>
+        </div>
+        <div class="col">
+            <div class="card shadow-sm">
+                <div class="card-body text-center">
+                    <h5 class="card-title">Ứng viên</h5>
+                    <p class="fs-3 fw-bold text-success" th:text="${candidateCount}"></p>
+                </div>
+            </div>
+        </div>
+        <div class="col">
+            <div class="card shadow-sm">
+                <div class="card-body text-center">
+                    <h5 class="card-title">Nhà tuyển dụng</h5>
+                    <p class="fs-3 fw-bold text-warning" th:text="${recruiterCount}"></p>
+                </div>
+            </div>
+        </div>
+        <div class="col">
+            <div class="card shadow-sm">
+                <div class="card-body text-center">
+                    <h5 class="card-title">Bài đăng</h5>
+                    <p class="fs-3 fw-bold text-purple" th:text="${postCount}"></p>
+                    <a th:href="@{/posts/list}" class="btn btn-outline-warning mt-2">Xem danh sách</a>
+                </div>
+            </div>
+        </div>
+        <div class="col">
+            <div class="card shadow-sm">
+                <div class="card-body text-center">
+                    <h5 class="card-title">Đang chờ duyệt</h5>
+                    <p class="fs-3 fw-bold text-muted-purple" th:text="${pendingCount}"></p>
+                </div>
+            </div>
+        </div>
+        <div class="col">
+            <div class="card shadow-sm">
+                <div class="card-body text-center">
+                    <h5 class="card-title">Đã duyệt</h5>
+                    <p class="fs-3 fw-bold text-success" th:text="${approvedCount}"></p>
+                </div>
+            </div>
+        </div>
+        <div class="col mx-auto">
+            <div class="card shadow-sm">
+                <div class="card-body text-center">
+                    <h5 class="card-title">Bị từ chối</h5>
+                    <p class="fs-3 fw-bold text-danger" th:text="${rejectedCount}"></p>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<footer class="text-center mt-5 p-4 bg-light border-top">
+    <p class="mb-0">© 2025 JobFinder. Tất cả quyền được bảo vệ.</p>
+</footer>
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>
